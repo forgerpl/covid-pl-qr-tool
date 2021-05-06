@@ -1,0 +1,20 @@
+[package]
+name = "covid-qr-decode"
+version = "0.1.0"
+authors = ["Jacek Całusiński <forger@forger.pl>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base64 = "0.13.0"
+chrono = "0.4.19"
+displaythis = "1.0.23"
+image = "0.23.14"
+openssl = "0.10.34"
+quircs = "0.10.0"
+thiserror = "1.0.24"
+tree_magic_mini = "3.0.0"
+
+[dev-dependencies]
+assert2 = "0.3.5"
