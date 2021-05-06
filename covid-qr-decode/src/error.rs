@@ -35,3 +35,13 @@ pub enum MalformedLine {
     #[error("malformed field data: {0:?}")]
     MalformedFieldData(FieldName),
 }
+
+#[derive(Debug, Error)]
+pub enum DecryptionError {
+    #[error("SSL decryption error: {0}")]
+    Ssl(#[from] openssl::error::ErrorStack),
+    #[error("Invalid UTF-8 string in the payload")]
+    InvalidUtf8(#[from] std::str::Utf8Error),
+    #[error("Empty payload; probably bad decryption key")]
+    NoData,
+}
