@@ -45,3 +45,23 @@ pub enum DecryptionError {
     #[error("Empty payload; probably bad decryption key")]
     NoData,
 }
+
+#[derive(Debug, Error)]
+pub enum QrError {
+    #[error("QR code either not found or not supported")]
+    NoData,
+    #[error("QR code extraction failed: {0}")]
+    Extract(#[from] quircs::ExtractError),
+    #[error("QR code decode failed: {0}")]
+    Decode(#[from] quircs::DecodeError),
+    #[error("QR image read failed: {0}")]
+    Image(#[from] image::ImageError),
+    #[error("Invalid UTF-8 string in the payload: {0}")]
+    InvalidUtf8(#[from] std::str::Utf8Error),
+    #[error("QR code payload version {0} not supported")]
+    UnknownPayloadVersion(u8),
+    #[error("QR code payload malformed")]
+    MalformedPayload,
+    #[error("QR code payload base64 error {0}")]
+    MalformedPayloadBase64(#[from] base64::DecodeError),
+}
