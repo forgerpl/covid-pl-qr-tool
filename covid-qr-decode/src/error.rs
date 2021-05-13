@@ -65,3 +65,13 @@ pub enum QrError {
     #[error("QR code payload base64 error {0}")]
     MalformedPayloadBase64(#[from] base64::DecodeError),
 }
+
+#[derive(Debug, Error)]
+pub enum PdfError {
+    #[error("PDF processing error")]
+    PdfProcessing(#[from] pdf::error::PdfError),
+    #[error("QR code not found")]
+    QrNotFound,
+    #[error("Image conversion error")]
+    ImageConversion,
+}
