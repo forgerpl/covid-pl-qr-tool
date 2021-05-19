@@ -1,0 +1,13 @@
+[package]
+name = "covid-qr-info"
+version = "0.1.0"
+authors = ["Jacek Całusiński <forger@forger.pl>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.40"
+clap = "2.33.3"
+covid-qr-decode = { path = "../covid-qr-decode" }
+tree_magic_mini = "3.0.0"
