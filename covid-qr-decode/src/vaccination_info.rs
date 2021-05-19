@@ -25,6 +25,17 @@ pub struct VaccinationInfo {
     vaccine_type: String,
 }
 
+impl VaccinationInfo {
+    pub fn has_expired(&self) -> bool {
+        // this may not be very accurate if you're in a different time zone
+        // but then you probably don't need the check anyway
+        // ideally, this should use a proper time zone for the checks
+        let today = chrono::offset::Local::today().naive_local();
+
+        self.certificate_expiration < today
+    }
+}
+
 #[inline]
 fn munch<'a, T, E>(
     field: FieldName,
